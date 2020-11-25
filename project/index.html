@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src=js/bootstrap.bundle.js></script>
+<script src=js/bootstrap.esm.js></script>
+<script src=js/bootstrap.js></script>
+<script src=css/bootstrap.css></script>
+<script src=css/bootstrap-grid.css></script>
+<script src=css/bootstrap-reboot.css></script>
+<script src=css/bootstrap-utilities.css></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="script.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>JiraTimerFrontend</title>
+    <link href="form-validation.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+            <h4 class="mb-3">Request Form</h4>
+
+    <form id="form" action="https://igls74yha5.execute-api.eu-central-1.amazonaws.com/v1/post-json" method="post" role="form" class="form-control" target="_blank">
+        <div class="form-group">
+            <label for="E-mailInput">E-mail Address</label>
+            <input name="mail" type="email" class="form-control" id="E-mailInput" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">Your Jira access E-mail</small>
+        </div>
+<!--        <div class="form-group">
+            <label for="date1-input" class="col-2 col-form-label">Date1</label>
+            <input name="date1" class="form-control" type="date" value="2020-01-01" id="date1-input">
+            <small id="date2-input-help" class="form-text text-muted">Specify start date</small>
+        </div>
+        <div class="form-group">
+            <label for="date2-input" class="col-2 col-form-label">Date2</label>
+            <input name="date2" class="form-control" type="date" value="2020-01-01" id="date2-input">
+            <small id="date1-input-help" class="form-text text-muted">Specify end date</small>
+        </div>
+        <div class="form-group">
+            <label for="jql-text-input" class="col-2 col-form-label">Text</label>
+            <input name="querry" class="form-control" type="text" value="JQL querry" id="jql-text-input">
+            <small id="jql-text-input-help" class="form-text text-muted">Specify JQL querry</small>
+        </div>-->
+        <button id="submitbutton" type="button" class="btn btn-primary">Submit</button>
+    </form>
+
+
+<!--
+    <form id="eInput" name="eInput" action="https://k4088k1ntf.execute-api.eu-central-1.amazonaws.com/test1/" method="POST" role="form" class="form-text">
+        <div class="data">
+        <label for="E-mailInput">E-mail Address</label>
+        <input name="mail" type="email" class="form-control" id="E-mailInput" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted">Your Jira access E-mail</small>
+        </div>
+        <button id="submitButton" type="submit">Submit</button>
+    </form>
+    -->
+
+</body>
+</html>
