@@ -42,9 +42,10 @@
 
             $.ajax(settings).done(function (response) {
                 console.log(response);
-                let newWindow = window.open("_blank","new window");
-                newWindow.document.write(JSON.stringify(response));
-                newWindow.focus();
+                let newWindow = window.open("response.html","new window");
+                //newWindow.document.write(JSON.stringify(response));
+                //newWindow.focus();
+                newWindow.location.replace('response.html?data='+JSON.stringify(response));
             });
         }
     </script>
@@ -58,7 +59,7 @@
     <div class="col-md-8">
         <div class="Title" align="center"><h4>Request Form</h4></div>
     <div class="row" id="formrow">
-        <form id="newform" action="https://igls74yha5.execute-api.eu-central-1.amazonaws.com/v1/post-json" class="main-form" method="POST" target="_blank">
+        <form id="newform" action="https://igls74yha5.execute-api.eu-central-1.amazonaws.com/v1/post-json" class="main-form" method="POST" target="response.html">
             <div class="row">
                 <div class="form-group col 12">
                     <label for="mail">Jira E-mail</label>
