@@ -39,9 +39,7 @@
                 //"data": JSON.stringify({"mail":"apple@a.hu","startdate":"2020-01-01","enddate":"2020-01-02","querrytext":"asd"}),
                 "data" : JSON.stringify(data),
             };
-
             $.ajax(settings).done(function (response) {
-                console.log(response);
                 let newWindow = window.open("response.html","new window");
                 //newWindow.document.write(JSON.stringify(response));
                 //newWindow.focus();
