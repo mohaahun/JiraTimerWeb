@@ -5,6 +5,19 @@ $(document).ready(function(){
     $jsondata = JSON.parse($indata.replaceAll('%22','"'))
 
 
+    let $fudata = JSON.parse($jsondata[3]);
+    let $mfudata = _.map($fudata.full, function (group){
+        return{
+            project: group.project,
+            issueKey: group.issueKey,
+            issueSummary : group.issueSummary,
+            user : group.user,
+            startTimeOfWorklog : group.startTimeOfWorklog,
+            TimeSpent : group.TimeSpent,
+            dateAndTimeOfEdit : group.dateAndTimeOfEdit
+        }
+    });
+
     $(function () {
         $('#fulltable').bootstrapTable({
             columns:[
@@ -30,7 +43,7 @@ $(document).ready(function(){
                     field:'dateAndTimeOfEdit',
                     title:'Worklog Edit Time'}
             ],
-            data : $jsondata
+            data : $mfudata
         });
     });
 
