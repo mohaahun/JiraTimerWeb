@@ -1,0 +1,14 @@
+body{background-color: #003366}
+h2{text-align: center}
+.container {
+    background-color: #57afe5;
+    padding-top: 0px;
+    margin-top: 0px;
+    align-self: center;
+}
+
+.main-form {
+    margin: auto;
+    padding-bottom: 5px;
+    align-self: center;
+}

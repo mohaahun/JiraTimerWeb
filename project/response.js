@@ -1,65 +1,71 @@
-$(document).ready(function(){
+$(document).ready(function () {
     $indata = document.baseURI.split('?data=')[1]
-   $indata = decodeURIComponent($indata)
+    $indata = decodeURIComponent($indata)
 
-    $jsondata = JSON.parse($indata.replaceAll('%22','"'))
+    $jsondata = JSON.parse($indata.replaceAll('%22', '"'))
 
 
     let $fudata = JSON.parse($jsondata[3]);
-    let $mfudata = _.map($fudata.full, function (group){
-        return{
+    let $mfudata = _.map($fudata.full, function (group) {
+        return {
             project: group.project,
             issueKey: group.issueKey,
-            issueSummary : group.issueSummary,
-            user : group.user,
-            startTimeOfWorklog : group.startTimeOfWorklog,
-            TimeSpent : group.TimeSpent,
-            dateAndTimeOfEdit : group.dateAndTimeOfEdit
+            issueSummary: group.issueSummary,
+            user: group.user,
+            startTimeOfWorklog: group.startTimeOfWorklog,
+            TimeSpent: group.TimeSpent,
+            dateAndTimeOfEdit: group.dateAndTimeOfEdit
         }
     });
 
     $(function () {
         $('#fulltable').bootstrapTable({
-            columns:[
+            columns: [
                 {
-                field:'project',
-                title:'Project ID'},
+                    field: 'project',
+                    title: 'Project ID'
+                },
                 {
-                    field:'issueKey',
-                    title:'Issue ID'},
+                    field: 'issueKey',
+                    title: 'Issue ID'
+                },
                 {
-                    field:'issueSummary',
-                    title:'Issue Summary'},
+                    field: 'issueSummary',
+                    title: 'Issue Summary'
+                },
                 {
-                    field:'user',
-                    title:'Name'},
+                    field: 'user',
+                    title: 'Name'
+                },
                 {
-                    field:'startTimeOfWorklog',
-                    title:'Worklog Start Time'},
+                    field: 'startTimeOfWorklog',
+                    title: 'Worklog Start Time'
+                },
                 {
-                    field:'TimeSpent',
-                    title:'Worktime'},
+                    field: 'TimeSpent',
+                    title: 'Worktime'
+                },
                 {
-                    field:'dateAndTimeOfEdit',
-                    title:'Worklog Edit Time'}
+                    field: 'dateAndTimeOfEdit',
+                    title: 'Worklog Edit Time'
+                }
             ],
-            data : $mfudata
+            data: $mfudata
         });
     });
 
     //project view
 
-  /*  let pgroups = _.each($jsondata[1], function (value){
-        return value[1];
-    });
+    /*  let pgroups = _.each($jsondata[1], function (value){
+          return value[1];
+      });
 
-    let $pjdata = _.map(pgroups, function (group){
-        return{
-            project: $jsondata[1].project,
-            Times: _.pluck(group, 'TimeSpent')
-        }
-    });*/
-
+      let $pjdata = _.map(pgroups, function (group){
+          return{
+              project: $jsondata[1].project,
+              Times: _.pluck(group, 'TimeSpent')
+          }
+      });*/
 
 
     //issue view
@@ -76,22 +82,22 @@ $(document).ready(function(){
         }
     });*/
     //console.log("jsondata[0] "+$jsondata[0])
-   /* $(function ()
-    {$(onload())
-        let $ijdata = _.map(issuelist, function (group){
-            return{
-                issueKey: group[0],
-                Times: _.pluck(group[1])
+    /* $(function ()
+     {$(onload())
+         let $ijdata = _.map(issuelist, function (group){
+             return{
+                 issueKey: group[0],
+                 Times: _.pluck(group[1])
 
-            }
-            console.log("ijdata "+$ijdata)
-        });
-    });*/
+             }
+             console.log("ijdata "+$ijdata)
+         });
+     });*/
 
 //project
     let $pjdata = $jsondata[1].project;
-    let $mpjdata = _.map($pjdata, function (value,key){
-        return{
+    let $mpjdata = _.map($pjdata, function (value, key) {
+        return {
             project: key,
             Times: value,
         }
@@ -100,22 +106,24 @@ $(document).ready(function(){
     $(function () {
         $('#projecttable').bootstrapTable({
             //data: $jsondata
-            columns:[
+            columns: [
                 {
-                    field:'project',
-                    title:'Project ID'},
+                    field: 'project',
+                    title: 'Project ID'
+                },
                 {
-                    field:'Times',
-                    title:'Worktime'}
+                    field: 'Times',
+                    title: 'Worktime'
+                }
             ],
-            data : $mpjdata
+            data: $mpjdata
         });
     });
 
 //issue
     let $isdata = $jsondata[0].issue;
-    let $misdata = _.map($isdata, function (value,key){
-        return{
+    let $misdata = _.map($isdata, function (value, key) {
+        return {
             issueKey: key,
             Times: value,
         }
@@ -123,22 +131,24 @@ $(document).ready(function(){
 
     $(function () {
         $('#issuetable').bootstrapTable({
-            columns:[
+            columns: [
                 {
-                    field:'issueKey',
-                    title:'issue_ID'},
+                    field: 'issueKey',
+                    title: 'issue_ID'
+                },
                 {
-                    field:'Times',
-                    title:'Worktime'}
+                    field: 'Times',
+                    title: 'Worktime'
+                }
             ],
-            data : $misdata
+            data: $misdata
         });
     });
 
 // person
     let $pedata = $jsondata[2].person;
-    let $mpedata = _.map($pedata, function (value,key){
-        return{
+    let $mpedata = _.map($pedata, function (value, key) {
+        return {
             user: key,
             Times: value,
         }
@@ -146,18 +156,19 @@ $(document).ready(function(){
 
     $(function () {
         $('#persontable').bootstrapTable({
-            columns:[
+            columns: [
                 {
-                    field:'user',
-                    title:'User'},
+                    field: 'user',
+                    title: 'User'
+                },
                 {
-                    field:'Times',
-                    title:'Worktime'}
+                    field: 'Times',
+                    title: 'Worktime'
+                }
             ],
-            data : $mpedata
+            data: $mpedata
         });
     });
-
 
 
     /*let pegroups = _.groupBy($jsondata, function (value) {
