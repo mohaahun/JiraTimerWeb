@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>JiraTimer ServerSide Response</title>
@@ -32,6 +32,47 @@
         });
     </script>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.6/xlsx.full.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <!--script src="ConvertToExcel.js"></script>-->
+    <script>
+        function TableToExcel() {
+            //get tables
+            let full = document.getElementById('fulltable');
+            let person = document.getElementById('persontable');
+            let project = document.getElementById('projecttable');
+            let issue = document.getElementById('issuetable');
+
+            //table to excel sheet
+            let workbook = XLSX.utils.book_new();
+            let fullSheet = XLSX.utils.table_to_sheet(full, {dateNF: 'YYYY-MM-DDThh:mm:ss'});
+            let personSheet = XLSX.utils.table_to_sheet(person);
+            let projectSheet = XLSX.utils.table_to_sheet(project);
+            let issueSheet = XLSX.utils.table_to_sheet(issue);
+
+            XLSX.utils.book_append_sheet(workbook, fullSheet, "Full View");
+            XLSX.utils.book_append_sheet(workbook, personSheet, "Person View");
+            XLSX.utils.book_append_sheet(workbook, projectSheet, "Project View");
+            XLSX.utils.book_append_sheet(workbook, issueSheet, "Issue View");
+
+
+            //Sheet to Blob
+            let blob = new Blob([s2b(XLSX.write(workbook, {bookType: 'xlsx', type: 'binary'}))], {
+                type: "application/octet-stream"
+            });
+            //return sheet file
+            return saveAs(blob, "results.xlsx");
+        }
+
+        function s2b(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+            return buf;
+        }
+    </script>
+
 
 </head>
 <body>
@@ -51,6 +92,10 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#Issue_View">Issue View</a>
+        </li>
+        <li class="nav-item">
+            <button id="download" onclick="TableToExcel()" class="btn btn-link">Download Excel</button>
+            <!--<a class="nav-link" onclick="TableToExcel">Download Excel</a>-->
         </li>
     </ul>
 
